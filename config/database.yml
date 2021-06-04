@@ -2,16 +2,19 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+  host: localhost
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
   database: lock_checker_development
+  username: dev
   password: password
 
 test:
   <<: *default
   database: lock_checker_test
+  username: test
   password: password
 
 production:

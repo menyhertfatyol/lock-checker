@@ -1,0 +1,2 @@
+class Doorlock < ApplicationRecord
+end
