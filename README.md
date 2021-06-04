@@ -1,24 +1,33 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Prerequisites
 
-Things you may want to cover:
+To set up your development environment, you'll need to following:
 
-* Ruby version
+- [Docker](https://www.docker.com/)
+- A Ruby version manager ([RVM](https://rvm.io/) or [Rbenv](https://github.com/sstephenson/rbenv) preferred)
+- The appropriate version of Ruby, along with the Bundler gem
 
-* System dependencies
+## Setting up
 
-* Configuration
+You'll need the PostgreSQL client library, so if you don't already have it installed then do so now:
+```sh
+brew install postgresql
+```
 
-* Database creation
+Install the necessary gems:
+```sh
+bundle install
+```
 
-* Database initialization
+## Running the build
 
-* How to run the test suite
+Start up Docker Compose:
+```sh
+docker-compose up -d
+```
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+To run the build:
+```sh
+bundle exec rake
+```
