@@ -31,3 +31,10 @@ To run the build:
 ```sh
 bundle exec rake
 ```
+
+## Production setup
+
+You'll need the connection string to your PostgreSQL set in the ENV variable
+```sh
+ENV['DATABASE_URL']
+```
