@@ -27,6 +27,11 @@ Start up Docker Compose:
 docker-compose up -d
 ```
 
+Run the migrations:
+```sh
+bundle exec rails db:migrate
+```
+
 To run the build:
 ```sh
 bundle exec rake
