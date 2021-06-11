@@ -8,8 +8,8 @@ RSpec.describe Door do
       before { allow(RPi::GPIO).to receive(:high?).and_return true }
 
       it 'saves the open state of the door lock' do
-        expect(Doorlock).to receive(:create!).with(state: 'open')
         expect { check_lock_state }.to change(Doorlock.all, :size).by(1)
+        expect(Doorlock).to have_received(:create!).with(state: 'open')
       end
     end
 
@@ -17,8 +17,8 @@ RSpec.describe Door do
       before { allow(RPi::GPIO).to receive(:high?).and_return false }
 
       it 'saves the locked state of the door lock' do
-        expect(Doorlock).to receive(:create!).with(state: 'locked')
         expect { check_lock_state }.to change(Doorlock.all, :size).by(1)
+        expect(Doorlock).to have_received(:create!).with(state: 'locked')
       end
     end
   end
