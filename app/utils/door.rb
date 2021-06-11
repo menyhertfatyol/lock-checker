@@ -5,9 +5,9 @@ class Door
 
     begin
       if RPi::GPIO.high? 11
-        Doorlock.create(state: 'open')
+        Doorlock.create!(state: 'open')
       else
-        Doorlock.create(state: 'locked')
+        Doorlock.create!(state: 'locked')
       end
     rescue StandardError
       RPi::GPIO.clean_up
