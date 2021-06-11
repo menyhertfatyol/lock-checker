@@ -13,7 +13,7 @@ RSpec.describe Door do
   end
 
   context 'when door is closed' do
-    before { allow(RPi::GPIO).to receive(:high?).and_return true }
+    before { allow(RPi::GPIO).to receive(:high?).and_return false }
 
     it 'saves the locked state of the door lock' do
       expect(Doorlock).to receive(:create).with(state: 'locked')
