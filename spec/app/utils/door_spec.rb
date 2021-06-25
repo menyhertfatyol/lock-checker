@@ -35,7 +35,7 @@ RSpec.describe Door do
       subject(:check_lock_state) { described_class.check_lock_state(pin_num: 13) }
 
       it 'should work just fine' do
-        expect(RPi::GPIO).to receive(:high?).with(pin_num: 13).and_return true
+        expect(RPi::GPIO).to receive(:high?).with(13).and_return true
         check_lock_state
       end
     end
