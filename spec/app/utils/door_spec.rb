@@ -26,8 +26,8 @@ RSpec.describe Door do
       before { allow(Doorlock).to receive(:create!).and_raise(StandardError) }
 
       it 'cleans up GPIO port' do
+        expect(RPi::GPIO).to receive(:clean_up)
         expect{ check_lock_state }.to raise_error StandardError
-        expect(RPi::GPIO).to have_received(:clean_up)
       end
     end
   end
