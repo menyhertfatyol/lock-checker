@@ -1,3 +1,4 @@
+require 'dotenv/load'
 require 'uri'
 require 'mqtt'
 require_relative 'cloud_mqtt'
