@@ -7,6 +7,16 @@ require 'rpi_gpio'
 RPi::GPIO.set_numbering :board
 RPi::GPIO.setup 11, as: :input, pull: :up
 
+def cloud_mqtt
+  uri = URI.parse ENV['CLOUDMQTT_URL']
+  {
+    remote_host: uri.host,
+    remote_port: uri.port,
+    username: uri.user,
+    password: uri.password,
+  }
+end
+
 Thread.new do
   MQTT::Client.connect(conn_opts) do |c|
     c.get('test') do |topic, message|
@@ -26,16 +36,4 @@ MQTT::Client.connect(cloud_mqtt) do |c|
     c.publish('test', message)
     sleep 1
   end
-end
-
-private
-
-def cloud_mqtt
-  uri = URI.parse ENV['CLOUDMQTT_URL']
-  {
-    remote_host: uri.host,
-    remote_port: uri.port,
-    username: uri.user,
-    password: uri.password,
-  }
 end
