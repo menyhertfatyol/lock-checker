@@ -8,5 +8,7 @@ class Door
     else
       Doorlock.create!(state: 'locked')
     end
+  ensure
+    RPi::GPIO.clean_up
   end
 end
