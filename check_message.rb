@@ -1,7 +1,4 @@
-require 'dotenv/load'
-require 'uri'
-require 'mqtt'
-require_relative 'cloud_mqtt'
+require_relative 'bootstrap'
 
 loop do
   Thread.new do
