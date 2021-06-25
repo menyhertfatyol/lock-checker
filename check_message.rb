@@ -10,4 +10,4 @@ Thread.new do
   end
 end
 
-loop {  }
+loop {}
