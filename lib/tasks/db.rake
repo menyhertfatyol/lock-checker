@@ -4,3 +4,5 @@ namespace :db do
     task cleanup: :environment do
       Doorlock.delete_by("created_at < '#{Time.now - 1.day}'")
     end
+  end
+end
