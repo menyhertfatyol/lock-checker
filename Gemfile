@@ -7,12 +7,11 @@ gem 'rails', '~> 6.1.3', '>= 6.1.3.2'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'bootsnap', '>= 1.4.4', require: false
-
+gem 'dotenv-rails', :groups => [:development, :test, :production]
 gem 'rpi_gpio'
 
 group :development, :test do
   gem 'rspec-rails'
-  gem 'dotenv-rails'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
