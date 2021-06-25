@@ -4,6 +4,6 @@ def cloud_mqtt
     remote_host: uri.host,
     remote_port: uri.port,
     username: uri.user,
-    password: uri.password,
+    password: uri.password
   }
 end
