@@ -1,21 +1,12 @@
 require_relative 'bootstrap'
+require_relative 'cloud_mqtt'
 
 RPi::GPIO.set_numbering :board
 RPi::GPIO.setup 11, as: :input, pull: :up
 
-def cloud_mqtt
-  uri = URI.parse ENV['CLOUDMQTT_URL']
-  {
-    remote_host: uri.host,
-    remote_port: uri.port,
-    username: uri.user,
-    password: uri.password,
-  }
-end
-
 Thread.new do
   MQTT::Client.connect(cloud_mqtt) do |c|
-    c.get('test') do |topic, message|
+    c.get('doorlock') do |topic, message|
       puts "#{topic}: #{message}"
     end
   end
@@ -29,7 +20,7 @@ MQTT::Client.connect(cloud_mqtt) do |c|
       state = 'locked'
     end
     message = { state: state, created_at: Time.now }.to_json
-    c.publish('test', message)
+    c.publish('doorlock', message)
     sleep 1
   end
 end
