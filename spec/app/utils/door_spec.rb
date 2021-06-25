@@ -21,5 +21,13 @@ RSpec.describe Door do
         expect(Doorlock.last.state).to eq 'locked'
       end
     end
+
+    context 'when any error occurs' do
+      before { allow(Doorlock).to receive(:create).and_raise(StandardError) }
+
+      it 'cleans up GPIO port' do
+        expect(RPi::GPIO).to receive(:clean_up)
+      end
+    end
   end
 end
