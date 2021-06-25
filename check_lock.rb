@@ -18,7 +18,7 @@ def cloud_mqtt
 end
 
 Thread.new do
-  MQTT::Client.connect(conn_opts) do |c|
+  MQTT::Client.connect(cloud_mqtt) do |c|
     c.get('test') do |topic, message|
       puts "#{topic}: #{message}"
     end
