@@ -11,5 +11,4 @@ MQTT::Client.connect(cloud_mqtt) do |c|
           end
   message = { state: state, created_at: Time.now }.to_json
   c.publish('doorlock', message)
-  sleep 1
 end
