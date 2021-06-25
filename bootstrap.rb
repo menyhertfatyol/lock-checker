@@ -1,0 +1,5 @@
+require 'dotenv/load'
+require 'mqtt'
+require 'uri'
+require 'json'
+require 'rpi_gpio'

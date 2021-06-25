@@ -1,8 +1,4 @@
-require 'dotenv/load'
-require 'mqtt'
-require 'uri'
-require 'json'
-require 'rpi_gpio'
+require 'bootstrap'
 
 RPi::GPIO.set_numbering :board
 RPi::GPIO.setup 11, as: :input, pull: :up
