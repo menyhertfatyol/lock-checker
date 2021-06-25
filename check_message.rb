@@ -1,4 +1,5 @@
 require 'uri'
+require 'mqtt'
 require_relative 'cloud_mqtt'
 
 loop do
