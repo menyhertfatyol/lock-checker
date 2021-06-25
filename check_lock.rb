@@ -4,14 +4,6 @@ require 'uri'
 require 'json'
 require 'rpi_gpio'
 
-uri = URI.parse ENV['CLOUDMQTT_URL'] || 'mqtt://localhost:1883'
-conn_opts = {
-  remote_host: uri.host,
-  remote_port: uri.port,
-  username: uri.user,
-  password: uri.password,
-}
-
 RPi::GPIO.set_numbering :board
 RPi::GPIO.setup 11, as: :input, pull: :up
 
@@ -23,7 +15,7 @@ Thread.new do
   end
 end
 
-MQTT::Client.connect(conn_opts) do |c|
+MQTT::Client.connect(cloud_mqtt) do |c|
   loop do
     if RPi::GPIO.high? 11
       state = 'open'
@@ -34,4 +26,16 @@ MQTT::Client.connect(conn_opts) do |c|
     c.publish('test', message)
     sleep 1
   end
+end
+
+private
+
+def cloud_mqtt
+  uri = URI.parse ENV['CLOUDMQTT_URL']
+  {
+    remote_host: uri.host,
+    remote_port: uri.port,
+    username: uri.user,
+    password: uri.password,
+  }
 end
