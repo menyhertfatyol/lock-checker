@@ -1,4 +1,4 @@
-require 'bootstrap'
+require_relative 'bootstrap'
 
 RPi::GPIO.set_numbering :board
 RPi::GPIO.setup 11, as: :input, pull: :up
