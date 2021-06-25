@@ -13,7 +13,7 @@ RSpec.describe Door do
       end
     end
 
-    context 'when door is closed' do
+    context 'when door is locked' do
       before { allow(RPi::GPIO).to receive(:high?).and_return false }
 
       it 'saves the locked state of the door lock' do
