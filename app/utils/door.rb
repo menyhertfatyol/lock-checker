@@ -1,5 +1,5 @@
 class Door
-  def self.check_lock_state
+  def self.check_lock_state(pin_num: 11)
     RPi::GPIO.set_numbering :board
     RPi::GPIO.setup 11, as: :input, pull: :up
 

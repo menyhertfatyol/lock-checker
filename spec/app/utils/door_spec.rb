@@ -27,7 +27,15 @@ RSpec.describe Door do
 
       it 'cleans up GPIO port' do
         expect(RPi::GPIO).to receive(:clean_up)
-        expect{ check_lock_state }.to raise_error StandardError
+        expect { check_lock_state }.to raise_error StandardError
+      end
+    end
+
+    context 'when custom GPIO pin is used' do
+      subject(:check_lock_state) { described_class.check_lock_state(pin_num: 13) }
+
+      it 'should work just fine' do
+        expect(RPi::GPIO).to receive(:high?).with(pin_num: 13).and_return true
       end
     end
   end
