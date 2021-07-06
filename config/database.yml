@@ -19,6 +19,4 @@ test:
 
 production:
   <<: *default
-  database: lock_checker_production
-  username: lock_checker
   password: <%= ENV['DATABASE_URL'] %>
