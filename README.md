@@ -1,5 +1,7 @@
-# README
+![RPI Installation manual](ikea_style_manual.png)
 
+# README
+Build a device that will check whether your door is locked, using a Raspberry PI, a hall effect sensor and a small but strong (preferably neodymium) magnet. It will store the results in a cloud Postgresql database of your choice (I chose Heroku for mine). The results can be displayed by a separate web application using the same database. You can find an example for the web app [here](https://github.com/menyhertfatyol/my-door-lock).
 ## Prerequisites
 
 To set up your development environment, you'll need to following:
@@ -11,35 +13,37 @@ To set up your development environment, you'll need to following:
 ## Setting up
 
 You'll need the PostgreSQL client library, so if you don't already have it installed then do so now:
-```sh
-brew install postgresql
+
+```
+sudo apt install libpq libpq-dev
 ```
 
 Install the necessary gems:
-```sh
+```
 bundle install
 ```
 
 ## Running the build
+*The build will only run on a Raspberry PI!*
 
 Start up Docker Compose:
-```sh
+```
 docker-compose up -d
 ```
 
 Run the migrations:
-```sh
+```
 bundle exec rails db:migrate
 ```
 
 To run the build:
-```sh
+```
 bundle exec rake
 ```
 
 ## Production setup
 
 You'll need the connection string to your PostgreSQL set in the ENV variable
-```sh
+```
 ENV['DATABASE_URL']
 ```
